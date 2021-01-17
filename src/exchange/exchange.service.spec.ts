@@ -52,6 +52,13 @@ describe('ExchangeService', () => {
       
       await expect(currenciesService.getCurrency).toBeCalledTimes(2);
      });
+
+     it('should be called getCurrency with correct params', async () => {
+      await service.convertAmount({ from: 'USD', to: 'BRL', amount: 1 });
+     
+     await expect(currenciesService.getCurrency).toBeCalledWith('USD')
+     await expect(currenciesService.getCurrency).toHaveBeenLastCalledWith('BRL')
+    });
   });
 
 });
