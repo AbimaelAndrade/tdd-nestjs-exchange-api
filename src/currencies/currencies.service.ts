@@ -16,6 +16,8 @@ export class CurrenciesRepository {
   async updateCurrency({currency, value }: Currency): Promise<Currency> {
     return new Currency();
   }
+
+  async deleteCurrency(currency: string): Promise<void>{ return }
 }
 
 @Injectable()
@@ -42,5 +44,9 @@ export class CurrenciesService {
 
     return await this.currenciesRepository
       .updateCurrency({currency, value });
+  }
+
+  async deleteCurrency(currency: string): Promise<void> {
+    await this.currenciesRepository.deleteCurrency(currency);
   }
 }
