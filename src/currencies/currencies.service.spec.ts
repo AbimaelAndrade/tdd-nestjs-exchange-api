@@ -1,11 +1,13 @@
 import { BadRequestException, InternalServerErrorException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { CurrenciesRepository, CurrenciesService } from './currencies.service';
+import { CurrenciesRepository } from './currencies.repository';
+import { CurrenciesService } from './currencies.service';
+import { Currency } from './currency';
 
 describe('CurrenciesService', () => {
   let service: CurrenciesService;
   let repository: CurrenciesRepository;
-  let mockData;
+  let mockData: Currency;
 
   beforeEach(async () => {
     const currenciesRepositoryMock = {
@@ -25,7 +27,7 @@ describe('CurrenciesService', () => {
 
     service = module.get<CurrenciesService>(CurrenciesService);
     repository = module.get<CurrenciesRepository>(CurrenciesRepository);
-    mockData = { currency: 'USD', value: 1 }
+    mockData = { currency: 'USD', value: 1 };
   });
 
   it('should be defined', () => {
